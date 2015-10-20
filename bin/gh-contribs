@@ -1,0 +1,51 @@
+#!/usr/bin/env node
+'use strict'
+var argv = require('yargs').argv
+var https = require('https')
+var gitconfig = require('git-config')
+
+var days = argv.d || 0
+var username = argv.u
+
+if (typeof username === 'undefined') {
+  gitconfig = gitconfig.sync()
+  if (gitconfig.github) {
+    username = gitconfig.github.user
+  }
+  if (typeof username === 'undefined') {
+    throw new Error('Please, provide a GitHub Username using `-u` or store ' +
+    'your username in your .gitconfig. ' +
+    'Hint:\n`git config --global github.user yourusername`.')
+  }
+}
+
+var options = {
+  host: 'github.com',
+  path: '/users/' + username + '/contributions',
+  method: 'GET'
+}
+
+var req = https.request(options, function (res) {
+  var data = ''
+  res.on('data', function (d) {
+    data += d
+  })
+
+  res.on('end', function () {
+    parseContributions(data)
+  })
+})
+req.end()
+req.on('error', console.error.bind(console))
+
+function parseContributions (data) {
+  var dayRe = /data-count="(\d+)" data-date="([\d-]+)"/g
+  var dayData
+  var calendar = []
+  while (dayData = dayRe.exec(data)) { // eslint-disable-line no-cond-assign
+    var dayContribs = Number(dayData[1])
+    calendar.push(dayContribs)
+  }
+  console.log(calendar.slice(-days).join(' '));
+}
+

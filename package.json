@@ -1,0 +1,51 @@
+{
+  "name": "gh-contribs",
+  "version": "0.1.0",
+  "description": "Get GitHub contributions for a user.",
+  "author": "David da Silva <dasilvacontin@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dasilvacontin/gh-contribs"
+  },
+  "bugs": "https://github.com/dasilvacontin/gh-contribs/issues",
+  "bin": "bin/gh-contribs",
+  "scripts": {
+    "lint": "standard",
+    "test": "node test/index.js | tap-spec",
+    "test:watch": "gaze 'npm test' 'test/**/*.js' 'lib/**/*.js' 'index.js'",
+    "start": "npm run test:watch",
+    "istanbul": "istanbul cover test/index.js",
+    "pretest": "npm run lint",
+    "preistanbul": "npm run lint",
+    "prepublish": "npm run test"
+  },
+  "main": "bin/gh-contribs",
+  "files": [
+    "index.js",
+    "bin",
+    "lib",
+    "LICENSE"
+  ],
+  "keywords": [
+    "gh-contribs",
+    "gh",
+    "github",
+    "contrib",
+    "contribution",
+    "user",
+    "json"
+  ],
+  "dependencies": {
+    "git-config": "0.0.7",
+    "yargs": "^3.15.0"
+  },
+  "devDependencies": {
+    "coveralls": "^2.11.2",
+    "istanbul": "^0.3.8",
+    "tape": "^4.0.1",
+    "tap-spec": "^4.0.2",
+    "gaze-cli": "^0.2.0",
+    "standard": "^4.5.0"
+  }
+}
