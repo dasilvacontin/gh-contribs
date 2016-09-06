@@ -26,3 +26,7 @@ npm-debug.log
 
 # sftp configuration file
 sftp-config.json
+
+### Auto-generated ###
+/bin
+/lib
