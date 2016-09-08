@@ -1,6 +1,6 @@
 {
   "name": "gh-contribs",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Get GitHub contributions for a user.",
   "author": "David da Silva <dasilvacontin@gmail.com>",
   "license": "MIT",
