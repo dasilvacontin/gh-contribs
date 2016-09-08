@@ -41,6 +41,7 @@
     "json"
   ],
   "dependencies": {
+    "babel-runtime": "^6.11.6",
     "git-config": "0.0.7",
     "mkdirp": "^0.5.1",
     "mz": "^2.4.0",
